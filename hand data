@@ -1,0 +1,47 @@
+using Leap;
+using Leap.Unity;
+public class drone : MonoBehaviour
+{
+    Controller controller;
+    float handyaw;
+    float handpitch;
+    float handroll;
+    float handwristrot;
+    Vector handCenter;
+    public GameObject x;
+    private bool isRotated;
+
+    // Start is called before the first frame update
+    void Start()
+    {
+        GetComponent<GameObject>();
+    }
+
+    // Update is called once per frame
+    void Update()
+    {
+        controller = new Controller();
+        Frame frame = controller.Frame();
+        List<Hand> hands = frame.Hands;
+        if (frame.Hands.Count > 0)
+        {
+            Hand fristhand = hands[0];
+        }
+
+        handpitch = hands[0].PalmNormal.Pitch;
+        handyaw = hands[0].PalmNormal.Yaw;
+        handroll = hands[0].PalmNormal.Roll;
+        handwristrot = hands[0].WristPosition.Pitch;
+        handCenter = hands[0].PalmPosition;
+
+         Debug.Log("pitch  :" + handpitch);
+        // Debug.Log("yam  :" + handyaw);
+         //Debug.Log("roll  :" + handroll);
+         //  Debug.Log("position  :" + handCenter.y);
+        //Debug.Log("wristrot  :" + handwristrot);
+
+
+
+       
+    }
+}
